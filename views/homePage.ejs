@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="vov4ik">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>getTorrents - a project to 	&#8721xchange files and &#950h&#8704&#925g&#958; mind&#918</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+    </style>
+
+    <link href="css/album.css" rel="stylesheet">
+    
+  </head>
+  
+<body class="text-center d-flex flex-column m-0 p-0">
+
+<%- include("./partials/nav") %>
+
+<% if (flashes.error) { %>
+                       
+  <div id="flash_error_id" class="bg-danger text-light min-vw-100 sticky-top py-1"><%= flashes.error %></div>
+                       
+<% } else if (flashes.success) { %>
+                       
+  <div id="flash_success_id" class="bg-success text-light min-vw-100 sticky-top py-1"><%= flashes.success %></div>
+                       
+<% } %>
+
+<main role="main" class="min-vh-100 d-flex justify-content-center">
+
+  <div class="mt-5 display-4 w-75 d-flex align-self-center">Hello, that's a getTorrents project! Here you can download any file that you need or upload it. That's project
+  will nicely help you if you're trying to find any type of information on the Internet. You can use that site anywhere any time
+  and we hope you will enjoy!</div>
+
+</main>
+
+</body>
+</html>

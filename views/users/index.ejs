@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="vov4ik">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>getTorrents - a project to 	&#8721xchange files and &#950h&#8704&#925g&#958; mind&#918</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+    </style>
+
+    <link href="/css/album.css" rel="stylesheet">
+    
+  </head>
+  
+<body class="text-center d-flex flex-column m-0 p-0">
+
+<%- include("../partials/nav") %>
+
+<% if (flashes.error) { %>
+                       
+  <div id="flash_error_id" class="bg-danger text-light min-vw-100 fixed-top py-1"><%= flashes.error %></div>
+                       
+<% } else if (flashes.success) { %>
+                       
+  <div id="flash_success_id" class="bg-success text-light min-vw-100 fixed-top py-1"><%= flashes.success %></div>
+                       
+<% } %>
+
+<main role="main">
+
+
+  <div class="album py-5 bg-light">
+  
+    <div class="container">
+
+      <div class="d-flex flex-wrap">
+      
+        
+        
+        <% for (let user of users) { %>
+        
+        <div class="mx-2">
+        
+          <div class="card mt-4 shadow-sm torrent-card">
+          
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="<%= user.color %>"/><text class="display-4" x="50%" y="50%" fill="#eceeef" dy=".3em"><%= user.username %></text></svg>
+            <div class="card-body">
+              <p class="card-text text-left">karma: <strong><%= user.karma %></strong><br />own torrents: <strong><%= user.ownTorrents.length %></strong><br />downloaded torrents: <strong><%= user.downloadedTorrents.length %></strong><br />
+              </p>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group mt-3">
+                  <form action="/users/<%= user._id %>" class="btn-group">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
+                  </form>
+              </div>
+              
+            </div>
+
+            
+          </div>
+          </div>
+          </div>
+          
+        <% } %>
+          
+        
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+</main>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

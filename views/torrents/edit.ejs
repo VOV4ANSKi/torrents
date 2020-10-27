@@ -1,0 +1,16 @@
+<div class="data-form">
+
+  <form action="<%= `/torrents/${torrent._id}/update?_method=PUT` %>"
+      method="POST">
+    
+    <input type="text" name="name" id="name"
+    value="<%= torrent.name %>" required>
+    
+    <input type="text" name="description" id="description"
+    value="<%= torrent.description %>">
+    
+    <button type="submit" id="lolo">update</button>
+    
+  </form>
+  
+</div>

@@ -1,0 +1,9 @@
+div[data-user-image] {
+  width: 46px;
+  height: 46px;
+  background-color: purple;
+}
+
+span[data-user-comment] {
+  font-size: 26px
+}

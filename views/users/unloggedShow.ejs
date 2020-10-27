@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Offcanvas template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/offcanvas/">
+
+    <!-- Bootstrap core CSS -->
+<link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/css/offcanvas.css" rel="stylesheet">
+  </head>
+<body class="bg-light">
+
+  <%- include("../partials/nav") %>
+
+<% if (flashes.error) { %>
+                       
+  <div id="flash_error_id" class="bg-danger text-light min-vw-100 sticky-top py-1 text-center" style="top: 0"><%= flashes.error %></div>
+                       
+<% } else if (flashes.success) { %>
+                       
+  <div id="flash_success_id" class="bg-success text-light min-vw-100 sticky-top py-1 text-center" style="top: 0"><%= flashes.success %></div>
+                       
+<% } %>
+
+<main role="main" class="container">
+  <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+    <img class="mr-3" src="/icons/torrent.svg" alt="" width="48" height="48">
+    <div class="lh-100">
+      <h6 class="mb-0 text-white lh-100"><%= populatedUser.username %></h6>
+      <small class="badge rounded bg-dark ml-1 mt-2">karma: <%= populatedUser.karma %></small>
+      <small class="badge rounded bg-dark ml-1 mt-2">own torrents: <%= populatedUser.ownTorrents.length %></small>
+      <small class="badge rounded bg-dark ml-1 mt-2">days from registration: <%= Math.ceil((new Date() - populatedUser.createdAt) / 86400000) %></small>
+    </div>
+  </div>
+  
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Torrents</h6>
+  
+<% for (let torrent of populatedUser.ownTorrents) { %>
+
+    <div class="media text-muted pt-3">
+      <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><rect width="100%" height="100%" fill="<%= torrent.color %>"/></svg>
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="text-gray-dark"><%= torrent.name %></strong>
+          <a href="/torrents/<%= torrent._id %>">View</a>
+        </div>
+        <span class="small d-inline badge text-light bg-dark rounded p-1 px-2 mt-2">karma: <%= torrent.karma %></span>
+        <span class="small d-inline badge text-light bg-dark rounded p-1 px-2 mt-2">donwloads: <%= torrent.nounOfDownloads %></span>
+      </div>
+    </div>
+
+<% } %>
+
+  </div>
+
+</main>
+</body>
+</html>

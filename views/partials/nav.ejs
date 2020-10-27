@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top min-vw-100 m-0 bg-dark">
+  <a class="navbar-brand" href="/">getTorrents</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+  
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/users">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/torrents">Torrents</a>
+      </li>
+      
+      <% if (isLogged) {%>
+      
+        <li class="nav-item">
+          <a class="nav-link" href=<%= `/users/${loggedUser._id}` %>>My Profile</a>
+        </li>
+      
+      <% } else { %>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/users/login">Log In</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/users/new">Sign Up</a>
+        </li>
+      
+      <% } %>
+      
+    </ul>
+    
+    <div class="d-flex">
+    
+      <form class="form-inline mt-2 mt-md-0" method="POST" action="/api/search">
+        <input class="form-control mr-sm-2" type="text" name="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        
+      </form>
+      
+      <% if (isLogged) {%>
+        <form class="form-inline mt-2 mt-md-0" action="<%= `/users/logout` %>" met>
+
+            <button class="btn btn-danger ml-3 my-sm-0" type="out">Log out</button>
+
+          
+        </form>
+      <% } %>
+    
+    </div>
+       
+  </div>
+  
+</nav>
+       

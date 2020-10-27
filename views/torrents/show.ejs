@@ -1,0 +1,142 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="vov4ik">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>getTorrents - a project to 	&#8721xchange files and &#950h&#8704&#925g&#958; mind&#918</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    
+
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <link href="/css/album.css" rel="stylesheet">
+    
+    <link href="/css/showTorrent.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+  </head>
+  
+<body>
+
+<div class="container-fluid " style="background-color:<%= torrent.color %>;">
+  <div class="container py-5">
+    <div class="display-4 text-light"><%= torrent.name %></div>
+    <div class="mt-4">
+      <span class="rounded bg-dark text-light px-3 py-1 mr-2">Karma: <%= torrent.karma %></span>
+      <span class="rounded bg-dark text-light px-3 py-1 mr-2">Downloads: <%= torrent.nounOfDownloads %></span>
+      <span class="rounded bg-dark text-light px-3 py-1 mr-2">Owner: <a href="/users/<%= torrent.owner._id %>"><%= torrent.owner.username %></a></span>
+    </div>
+
+  </div>
+
+</div>
+<div class="container mt-5 pt-2">
+  <div><%= torrent.description %></div>
+  <div class="flex-row mt-4">
+    <a href="/torrents/<%= torrent._id %>/download"><button class="btn btn-success py-1 px-3 mr-4">Download now!</button></a>
+    
+<!-- Button trigger modal -->
+
+<% if (isLogged && loggedUser.ownTorrents.includes(torrent._id)) { %>
+
+<button type="button" class="btn btn-primary py-1" data-toggle="modal" data-target="#exampleModal">
+  Edit!
+</button>
+
+<% } %>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        
+        
+         <form action="/torrents/update?_method=PUT" method="POST" class="was-validated">
+            <div class="form-group">
+              <label for="uname">Name:</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter some text" name="uname" maxlength="30" required>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Description:</label>
+              <textarea class="form-control" id="pwd" maxlength="333" name="description" required>Type description</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form> 
+        
+        
+        
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<hr class="mx-4">
+<!-- Create comment -->
+
+<% if (loggedUser) { %>
+
+<form class="container" method="POST" action="/comments/create?torrent=<%= torrent._id %>">
+  <div class="d-flex flex-column rounded shadow-sm bg-gray p-3 my-4">
+    <span data-user-comment>
+      Left your comment here!
+    </span>
+    <textarea class="mt-3" name="text"></textarea>
+    <div class="d-flex mt-2">
+      <button class="btn btn-outline-success" type="submit">Send comment</button>
+    </div>
+    
+</form>
+
+<% } %>
+
+
+<!-- User's comments -->
+
+<% for (let comment of torrent.comments) { %>
+
+<div class="container mt-3">
+  <div class="d-flex flex-column rounded shadow bg-gray p-3 my-4">
+    <div class="d-flex align-items-center">
+      <div  class="rounded" style="{background-color: <%= comment.creator.color %>}"></div>
+      <div class="ml-2">
+        <div class="text-dark"><%= comment.creator.username %></div>
+        <div class="">
+          <span class="rounded bg-dark text-light badge">karma: <%= comment.creator.karma %></span>
+          <span class="rounded bg-dark text-light badge">Downloads: <%= comment.creator.downloadedTorrents.length %></span>
+          <span class="rounded bg-dark text-light badge">Own torrents: <%= comment.creator.ownTorrents.length %></span>
+        </div>
+      </div>
+    </div>
+    <span class="text-gray mt-3"><%= comment.text %></span>
+  </div>
+  </div>
+  
+<% } %>
+
+</div>
+
+</body>
